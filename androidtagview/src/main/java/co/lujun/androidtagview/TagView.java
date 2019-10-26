@@ -154,10 +154,13 @@ public class TagView extends View {
         @Override
         public void run() {
             if (!isMoved && !isUp){
-                int state = ((TagContainerLayout)getParent()).getTagViewState();
-                if (state == ViewDragHelper.STATE_IDLE){
-                    isExecLongClick = true;
-                    mOnTagClickListener.onTagLongClick((int) getTag(), getText());
+                TagContainerLayout tagContainerLayout = (TagContainerLayout) getParent();
+                if (tagContainerLayout != null) {
+                    int state = tagContainerLayout.getTagViewState();
+                    if (state == ViewDragHelper.STATE_IDLE) {
+                        isExecLongClick = true;
+                        mOnTagClickListener.onTagLongClick((int) getTag(), getText());
+                    }
                 }
             }
         }
