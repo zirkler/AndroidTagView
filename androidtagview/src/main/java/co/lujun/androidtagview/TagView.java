@@ -240,7 +240,7 @@ public class TagView extends View {
 
         // draw text
         mPaint.setStyle(Paint.Style.FILL);
-        mPaint.setColor(mTextColor);
+        mPaint.setColor(getIsViewSelected() ? mSelectedTextColor : mTextColor);
 
         if (mTextDirection == View.TEXT_DIRECTION_RTL) {
             if (mTagSupportLettersRTL){
