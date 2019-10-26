@@ -71,6 +71,9 @@ public class TagView extends View {
     /** TagView text color*/
     private int mTextColor;
 
+    /** TagView text color*/
+    private int mSelectedTextColor;
+
     /** Whether this view clickable*/
     private boolean isViewClickable;
 
@@ -493,6 +496,10 @@ public class TagView extends View {
         this.mTextColor = color;
     }
 
+    public void setTagSelectedTextColor(int color){
+        this.mSelectedTextColor = color;
+    }
+
     public void setBorderWidth(float width) {
         this.mBorderWidth = width;
     }
@@ -527,7 +534,7 @@ public class TagView extends View {
         isViewSelectable = viewSelectable;
     }
 
-    //TODO change background color
+
     public void selectView() {
         if (isViewSelectable && !getIsViewSelected()) {
             this.isViewSelected = true;

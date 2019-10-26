@@ -31,7 +31,7 @@ import co.lujun.androidtagview.TagView;
 public class MainActivity extends AppCompatActivity {
 
     private TagContainerLayout mTagContainerLayout1, mTagContainerLayout2,
-            mTagContainerLayout3, mTagContainerLayout4, mTagcontainerLayout5;
+            mTagContainerLayout3, mTagContainerLayout4, mTagcontainerLayout5, mTagcontainerLayout6;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,12 +73,23 @@ public class MainActivity extends AppCompatActivity {
         list5.add("Custom Red Color");
         list5.add("Custom Blue Color");
 
+        List<String> list6 = new ArrayList<String>();
+        list6.add("Selectable 1");
+        list6.add("Selectable 2");
+        list6.add("Selectable 3");
+        list6.add("Selectable 4");
+        list6.add("Selectable 5");
+        list6.add("Selectable 6");
+        list6.add("Selectable 7");
+        list6.add("Selectable 8");
+
 
         mTagContainerLayout1 = (TagContainerLayout) findViewById(R.id.tagcontainerLayout1);
         mTagContainerLayout2 = (TagContainerLayout) findViewById(R.id.tagcontainerLayout2);
         mTagContainerLayout3 = (TagContainerLayout) findViewById(R.id.tagcontainerLayout3);
         mTagContainerLayout4 = (TagContainerLayout) findViewById(R.id.tagcontainerLayout4);
         mTagcontainerLayout5 = (TagContainerLayout) findViewById(R.id.tagcontainerLayout5);
+        mTagcontainerLayout6 = (TagContainerLayout) findViewById(R.id.tagcontainerLayout6);
 
         mTagContainerLayout1.setDefaultImageDrawableID(R.drawable.yellow_avatar);
 
@@ -190,8 +201,19 @@ public class MainActivity extends AppCompatActivity {
 
         List<int[]> colors = new ArrayList<int[]>();
         //int[]color = {backgroundColor, tagBorderColor, tagTextColor, tagSelectedBackgroundColor}
-        int[] col1 = {Color.parseColor("#ff0000"), Color.parseColor("#000000"), Color.parseColor("#ffffff"), Color.parseColor("#999999")};
-        int[] col2 = {Color.parseColor("#0000ff"), Color.parseColor("#000000"), Color.parseColor("#ffffff"), Color.parseColor("#999999")};
+        int[] col1 = {
+                Color.parseColor("#ff0000"),
+                Color.parseColor("#000000"),
+                Color.parseColor("#ffffff"),
+                Color.parseColor("#999999"),
+                Color.RED
+        };
+        int[] col2 = {
+                Color.parseColor("#0000ff"),
+                Color.parseColor("#000000"),
+                Color.parseColor("#ffffff"),
+                Color.parseColor("#999999"),
+                Color.GREEN};
 
         colors.add(col1);
         colors.add(col2);
@@ -205,6 +227,30 @@ public class MainActivity extends AppCompatActivity {
                 mTagContainerLayout1.addTag(text.getText().toString());
                 // Add tag in the specified position
 //                mTagContainerLayout1.addTag(text.getText().toString(), 4);
+            }
+        });
+
+
+        mTagcontainerLayout6.setTags(list5, colors);
+        mTagcontainerLayout6.setOnTagClickListener(new TagView.OnTagClickListener() {
+            @Override
+            public void onTagClick(int position, String text) {
+                mTagcontainerLayout6.toggleSelectTagView(position);
+            }
+
+            @Override
+            public void onTagLongClick(int position, String text) {
+
+            }
+
+            @Override
+            public void onSelectedTagDrag(int position, String text) {
+
+            }
+
+            @Override
+            public void onTagCrossClick(int position) {
+
             }
         });
 

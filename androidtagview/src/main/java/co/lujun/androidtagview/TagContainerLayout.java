@@ -152,6 +152,11 @@ public class TagContainerLayout extends ViewGroup {
     private int mSelectedTagBackgroundColor = Color.parseColor("#33FF7669");
 
     /**
+     * Selected TagView text color(default #33FF7669)
+     */
+    private int mSelectedTagTextColor = Color.parseColor("#33F44336");
+
+    /**
      * TagView text color(default #FF666666)
      */
     private int mTagTextColor = Color.parseColor("#FF666666");
@@ -520,7 +525,7 @@ public class TagContainerLayout extends ViewGroup {
         } else if (mTheme == ColorFactory.PURE_CYAN) {
             colors = ColorFactory.onPureBuild(ColorFactory.PURE_COLOR.CYAN);
         } else {
-            colors = new int[]{mTagBackgroundColor, mTagBorderColor, mTagTextColor, mSelectedTagBackgroundColor};
+            colors = new int[]{mTagBackgroundColor, mTagBorderColor, mTagTextColor, mSelectedTagBackgroundColor, mSelectedTagTextColor};
         }
         return colors;
     }
@@ -565,7 +570,7 @@ public class TagContainerLayout extends ViewGroup {
         int[] colors;
         if (mColorArrayList != null && mColorArrayList.size() > 0) {
             if (mColorArrayList.size() == mTags.size() &&
-                    mColorArrayList.get(position).length >= 4) {
+                    mColorArrayList.get(position).length >= 5) {
                 colors = mColorArrayList.get(position);
             } else {
                 throw new RuntimeException("Illegal color list!");
@@ -578,6 +583,7 @@ public class TagContainerLayout extends ViewGroup {
         tagView.setTagBorderColor(colors[1]);
         tagView.setTagTextColor(colors[2]);
         tagView.setTagSelectedBackgroundColor(colors[3]);
+        tagView.setTagSelectedTextColor(colors[4]);
         tagView.setTagMaxLength(mTagMaxLength);
         tagView.setTextDirection(mTagTextDirection);
         tagView.setTypeface(mTagTypeface);
