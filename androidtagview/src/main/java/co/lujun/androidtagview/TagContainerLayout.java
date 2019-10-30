@@ -880,13 +880,12 @@ public class TagContainerLayout extends ViewGroup {
      */
     public void toggleSelectTagView(int position) {
         if (isTagViewSelectable) {
-
             if (!isMultiSelectionAllowed) {
                 // De-select all previously selected tag(s).
                 for (int i = 0; i < mChildViews.size(); i++) {
                     if (i != position) {
                         TagView tagView = ((TagView)mChildViews.get(i));
-                        tagView.deselectView();
+                        tagView.forceDeselectView();
                     }
                 }
             }

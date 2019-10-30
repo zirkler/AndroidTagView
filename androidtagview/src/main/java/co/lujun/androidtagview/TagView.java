@@ -545,6 +545,11 @@ public class TagView extends View {
         }
     }
 
+    public void forceDeselectView() {
+        this.isViewSelected = false;
+        postInvalidate();
+    }
+
     public void deselectView() {
         if (isViewSelectable && getIsViewSelected()) {
             this.isViewSelected = false;
