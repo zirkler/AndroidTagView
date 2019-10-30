@@ -177,6 +177,11 @@ public class TagContainerLayout extends ViewGroup {
     private boolean isTagViewSelectable;
 
     /**
+     * Whether there can be multiple TagViews selected or just one.
+     */
+    private boolean isMultiSelectionAllowed;
+
+    /**
      * Tags
      */
     private List<String> mTags;
@@ -337,6 +342,7 @@ public class TagContainerLayout extends ViewGroup {
         mTagTextDirection = attributes.getInt(R.styleable.AndroidTagView_tag_text_direction, mTagTextDirection);
         isTagViewClickable = attributes.getBoolean(R.styleable.AndroidTagView_tag_clickable, false);
         isTagViewSelectable = attributes.getBoolean(R.styleable.AndroidTagView_tag_selectable, false);
+        isMultiSelectionAllowed = attributes.getBoolean(R.styleable.AndroidTagView_tag_multiselection_allowed, true);
         mRippleColor = attributes.getColor(R.styleable.AndroidTagView_tag_ripple_color, Color.parseColor("#EEEEEE"));
         mRippleAlpha = attributes.getInteger(R.styleable.AndroidTagView_tag_ripple_alpha, mRippleAlpha);
         mRippleDuration = attributes.getInteger(R.styleable.AndroidTagView_tag_ripple_duration, mRippleDuration);
@@ -873,7 +879,18 @@ public class TagContainerLayout extends ViewGroup {
      * @param position
      */
     public void toggleSelectTagView(int position) {
-        if (isTagViewSelectable){
+        if (isTagViewSelectable) {
+
+            if (!isMultiSelectionAllowed) {
+                // De-select all previously selected tag(s).
+                for (int i = 0; i < mChildViews.size(); i++) {
+                    if (i != position) {
+                        TagView tagView = ((TagView)mChildViews.get(i));
+                        tagView.deselectView();
+                    }
+                }
+            }
+
             TagView tagView = ((TagView)mChildViews.get(position));
             if (tagView.getIsViewSelected()){
                 tagView.deselectView();

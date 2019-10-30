@@ -147,6 +147,7 @@
                 app:tag_clickable="true"
                 app:tag_theme="none"
                 app:tag_selectable="true"
+                app:tag_multiselection_allowed="false"
                 app:container_border_width="0dp"
                 app:container_border_color="#00FFFFFF"
                 app:container_background_color="#00FFFFFF"
